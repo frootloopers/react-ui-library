@@ -13,7 +13,8 @@
   "scripts": {
     "start": "start-storybook -p 6006",
     "deploy": "npm run build && build-storybook -s dist -o deploy",
-    "build": "rm -rf dist && rollup -c",
+    "build": "rm -rf dist && rollup -c && react-scripts build",
+    "heroku-build": "build-storybook -s public",
     "build:watch": "rollup -c -w",
     "test": "tsc && npm run lint && npm run eslint:fix",
     "prepublishOnly": "npm run lint && npm run build",
@@ -22,8 +23,8 @@
     "prettier": "prettier **/*.ts **/*.tsx **/*.js",
     "prettier:fix": "npm run prettier -- --write",
     "lint": "npm run prettier:fix",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "repository": {
     "type": "git",
