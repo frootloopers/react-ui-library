@@ -1,7 +1,7 @@
 import React, { ForwardRefExoticComponent, RefAttributes } from 'react';
 import styled from 'styled-components';
-import { Button, ButtonProps } from '../Button/Button';
 import { useTransition } from '@Utils/Hooks';
+import { Button, ButtonProps } from '../Button/Button';
 
 /**
  * VoiceButton props
@@ -45,56 +45,48 @@ export const VoiceButton: React.FC<VoiceButtonProps> = ({
                 {...buttonProps}
             >
                 <div>
-                    <div style={{
-                        background: 'green',
-                        position: 'absolute',
-                        bottom: '0px',
-                        width: '100%',
-                        height: volume,
-                    }}></div>
-                    {icon && <Icon iconSize={iconSize} as={icon} /> }
+                    <StyledIconOverlay volume={volume}>
+                        {' '}
+                        {icon && (
+                            <Icon
+                                iconSize={iconSize}
+                                as={icon}
+                                iconColor="black"
+                            />
+                        )}{' '}
+                    </StyledIconOverlay>
+                    {icon && (
+                        <Icon iconSize={iconSize} as={icon} iconColor="green" />
+                    )}
                 </div>
             </StyledButton>
         </div>
     );
 };
 
-
 interface VoiceIconProps {
     iconSize: string;
-    as: ForwardRefExoticComponent<RefAttributes<SVGSVGElement>>; //we treat as object
+    iconColor?: string;
+    as: ForwardRefExoticComponent<RefAttributes<SVGSVGElement>>;
 }
 
 const Icon = styled.svg<VoiceIconProps>`
-    ${({ iconSize }) =>`
+    ${({ iconSize, iconColor }) => `
         height: ${iconSize};
         width: ${iconSize};
+        color: ${iconColor};
     `}
 `;
 
-/*const TwoIcon = styled.svg<({ icon: ForwardRefExoticComponent<RefAttributes<SVGSVGElement>> })>`
-
-`*/
-
-/*interface StackedIconProps extends VoiceIconProps {
-    iconVolumeColor?: string;
-}
-
-const StackedIcon: React.FC<StackedIconProps> = ({
-    iconSize,
-    as,
-    iconVolumeColor = "green"
-}): React.ReactElement => {
-    return(
-        // {icon && <Icon iconSize={iconSize} as={icon} />}
-        <span>
-        <Icon iconSize={iconSize} as={as} iconColor={iconVolumeColor} >
-        <Icon iconSize={iconSize} as={as} />
-        </Icon>
-        </span>
-    )
-}
-*/
+/**
+ * StyledIconOverlay inverts height and colors to set volume level
+ */
+const StyledIconOverlay = styled.div<{ volume: string }>`
+    position: absolute;
+    width: 100%;
+    height: ${({ volume }) => `${100 - parseFloat(volume)}%`};
+    overflow: hidden;
+`;
 
 const PULSE_ANIMATION = `
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
@@ -117,8 +109,7 @@ const PULSE_ANIMATION = `
     }`;
 
 const StyledButton = styled(Button).attrs({})<{ isPulsing: boolean }>`
-    ${({ isPulsing }): string =>
-        isPulsing ? PULSE_ANIMATION : ``}// No animation
+    ${({ isPulsing }): string => (isPulsing ? PULSE_ANIMATION : ``)}
 `;
 
 export default VoiceButton;
