@@ -1,41 +1,69 @@
-# CheaprEats UI Library
+# CheaprEats
 
-## PR Requirements
-- Showcase Visual Layer through an Image on your Pull Request
-- Showcase Interactions / Animations Layer through a GIF / Video on your Pull Request
-  - Macbook: Command+Shift+5
-  - Windows: Snip Tool
+## Description
 
-## Installation Requirements
+CheaprEats is a web application with a Voice User Interface (VUI). End-users make food orders through a voice activated system. The goal of the system is to enable food vendors and restaurants across university campuses — and ideally beyond — to offer contactless ordering options to their customers.
 
-**Prettier:** https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
+This serves as an accessible option to those who can't use alternative systems, and also a safe option in terms of public health in the current pandemic climate.
 
-## *Getting Started*
+## Key Features
 
-**Storybook:** https://storybook.js.org/
+-   **VoiceButton** \
+    On click, listens to user voice input.
+    Button pulses to indicate it’s in a listening state.
+    Green overlay on icon acts as volume indication.
 
-**TypeScript:** https://www.typescriptlang.org/
+-   **HighlightedText** \
+    When user speaks, records their speech into text.
+    Special words are highlighted. Upon click, a dropdown panel appears.
+    When the dropdown a special word is opened, the special word is highlighted orange.
+    As newer words are added, old words become less opaque
 
-**Atomic Design:** https://atomicdesign.bradfrost.com/
+-   **OrderTracker** \
+    Shows the current stage of the order that the customer is at (adding items to cart, checking out, awaiting delivery)\
+    Bar animates from left to right in order to indicate transition of states.\
+    Markers are used for each stage. Old markers become grey text; new markers become dark text.
 
-This repository encompasses the [Component Driven Design Methodology](https://medium.com/the-s-curve/why-component-driven-design-drives-great-software-products-7cace364e815).
+## Instructions
 
-## src/
-This folder is where you will be building your UI, no-data-logic only components.
+-   Provide clear steps for using each feature described above
+-   This section is critical to testing your application and must be done carefully and thoughtfully
 
-## stories/
-This folder is where you will be testing your UI on Storybook for different ViewPorts (Responsiveness), Accessibility and functionality.
+As our partner is handling the deployment of the application, we have not yet reached the point where we have an MVP yet. \
+Nonetheless, one can test components we have created via either the deployed Storybook to Heroku or cloning the repository and start Storybook locally.
 
-## .storybook/
-This folder contains the Storybook configuration options
+For the former, you can use this link to access said site. \
+For the latter, you can clone this repository, run `npm install` and then `npm start` to start Storybook to test our components.
 
-## scripts/
-This folder contains code generation scripts to help make development faster.
+Once you are on Storybook, navigate to the components we have built that you wish to test. You can change the arguments to see how our components change accordingly.
 
-### Helpful Resources
-#### Need Icons
-Use the Styled-Icons library to import icons from : https://styled-icons.dev/
-#### Themes/ 
-Contains all the styling that CheaprEats uses so you don't have to guess to color codes, Also your components will automatically translate to dark mode!
-##### Mixins (Responsiveness)
-- Ensure that you are using the consistent Mixins for your Media Queries: https://github.com/cheapreats/react-ui-library/blob/v2/src/Themes/ThemeTemplate.ts#L138
+-   **VoiceButton** \
+    In the Basic page: - When hovering the voice button in canvas, the button should turn grey. - When clicking the Microphone, there should be an Actions tab below that signals Button Click Occurred. - On the Controls tab, there should be many options to change the voice button accordingly. The below describes setting the values to those options and what should happen: - When we set disabled to be True, hovering should not change the button’s colour. - When we set isPulsing to be True, there should be a pulsing effect around the voice button. - We can set iconSize to be however pixels and the Microphone width and height should be equal to corresponding iconSize. - We can set volume to be a percentage lower than 100%. This makes the green overlay fill up the microphone to however input percentages. - We can change the name above the microphone by changing the name in children.
+
+-   **HighlightedText** \
+    Description
+
+-   **OrderTracker** \
+    Go to the page in which you want to do the testing: the Basic page is for a normal use while both NoText and LongText are for edge-case testing. You can change the size (e.g 10px, 3em, etc.), color of the texts and icons, and current state to see the change transition between states (from 0 to 1, 1 to 2, etc). \
+    It is also possible to change the icons themselves by changing the arguments in `src/Container/OrderTracker/OrderTracker.stories.tsx` file.
+
+## Development requirements
+
+[Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode "Prettier's Download Link") is required to develop CheaprEats.
+
+After installing Prettier, you can clone the repository and start developing and testing.
+
+## Deployment and Github Workflow
+
+So far, we have been building upon a pre-existing repository for UI components that CheaprEats has made. When there is a new component requested, a new branch is created by those working on said component. The partner is responsible for reviewing the pull requests once each component has been created. If they are satisfied with the code quality, then they will allow merging to the main branch to occur. This is also to ensure there is not an error when merging from two different sets of codes.
+
+Most of the naming conventions follow what has already been established by our partner. The branches are named with respect to the 'task id' of the roadmap provided by the partner to provide clarity.
+
+As our partner is responsible for deploying the live application, we have not deployed anything yet. Instead, we are using Storybook (per the recommendation of our partner) to test and view our components at the time.\
+We run `npm start` to start a local Storybook application.
+
+The repository that the partner created is automated with Github Actions; every push is tested (including styling), and they will only be flagged as failed or success accordingly.
+
+## Licenses
+
+We have decided with our partner to apply the MIT license. This is so that the project can be open source, allowing codes to be changed, distributed and used freely.
