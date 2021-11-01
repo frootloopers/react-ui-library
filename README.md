@@ -64,6 +64,8 @@ We run `npm start` to start a local Storybook application.
 
 The repository that the partner created is automated with Github Actions; every push is tested (including styling), and they will only be flagged as failed or success accordingly.
 
+In our fork of our partner's repo, we've setup Chromatic and Github Actions to automatically test and deploy our storybook to the internet upon a push.
+
 ## Licenses
 
 We have decided with our partner to apply the MIT license. This is so that the project can be open source, allowing codes to be changed, distributed and used freely.
