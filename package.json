@@ -11,7 +11,7 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "start": "start-storybook -p 6006",
+    "start": "start-storybook process.env.PORT",
     "deploy": "npm run build && build-storybook -s dist -o deploy",
     "build": "rm -rf dist && rollup -c",
     "heroku-build": "build-storybook -s public",
