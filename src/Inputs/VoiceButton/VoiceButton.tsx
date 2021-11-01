@@ -38,7 +38,7 @@ export const VoiceButton: React.FC<VoiceButtonProps> = ({
     const [, isAnimated] = useTransition(isPulsing);
     return (
         <div {...props}>
-            <p> {children} </p>
+            <p> {children} </p> 
             <StyledButton
                 isPulsing={isAnimated}
                 disabled={disabled}
